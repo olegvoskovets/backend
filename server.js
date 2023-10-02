@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const app = require("./app");
 
-const DB_HOST =
-  "mongodb+srv://oleg:AiE8rF3oxwV5odwM@cluster0.2fjuaqk.mongodb.net/books?retryWrites=true&w=majority";
+const { DB_HOST } = process.env;
 
 mongoose.set("strictQuery", true);
 
@@ -22,4 +21,4 @@ mongoose
 //AiE8rF3oxwV5odwM
 //mongodb+srv://oleg:AiE8rF3oxwV5odwM@cluster0.2fjuaqk.mongodb.net/
 
-//mongodb+srv://oleg:AiE8rF3oxwV5odwM@cluster0.2fjuaqk.mongodb.net/books?retryWrites=true&w=majority
+//mongodb+srv://oleg:AiE8rF3oxwV5odwM@cluster0.2fjuaqk.mongodb.net/backend_Db?retryWrites=true&w=majority
