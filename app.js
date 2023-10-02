@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs/promises");
 const moment = require("moment");
 const cors = require("cors");
+const dotenv = require("dotenv");
 
 const path = require("path");
 
@@ -10,6 +11,7 @@ const logPath = path.join(__dirname, "public", "server.log");
 const contactsRouter = require("./routes/api/contacts");
 const booksRouter = require("./routes/api/books");
 
+dotenv.config();
 const app = express();
 
 app.use(async (req, res, next) => {
