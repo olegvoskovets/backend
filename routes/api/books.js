@@ -2,7 +2,7 @@ const express = require("express");
 
 const strl = require("../../conrollers/books");
 
-const { validateBody } = require("../../middlewares");
+const { validateBody, isValidId } = require("../../middlewares");
 
 const schemasBooks = require("../../schemas/books");
 
@@ -10,16 +10,17 @@ const router = express.Router();
 
 router.get("/", strl.getAll);
 
-router.get("/:booksId", strl.getByIdBooks);
+router.get("/:id", isValidId, strl.getByIdBooks);
 
 router.post("/", validateBody(schemasBooks.addSchema), strl.addBook);
 
 router.put(
-  "/:booksId",
+  "/:id",
+  isValidId,
   validateBody(schemasBooks.addSchema),
   strl.updateBookId
 );
 
-router.delete("/:booksId", strl.deleteBookId);
+router.delete("/:id", isValidId, strl.deleteBookId);
 
 module.exports = router;

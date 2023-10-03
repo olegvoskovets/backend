@@ -1,16 +1,16 @@
-const books = require("../models/books");
+const Book = require("../models/book");
 
 const { HttpError, ctrlWrapper } = require("../helpers");
 
 const getAll = async (_, res) => {
-  const result = await books.getAll();
+  const result = await Book.find();
 
   return res.json(result);
 };
 
 const getByIdBooks = async (req, res) => {
-  const { booksId } = req.params;
-  const result = await books.getById(booksId);
+  const { id } = req.params;
+  const result = await Book.findById(id);
   if (!result) {
     throw HttpError(404, "Not found");
   }
@@ -20,16 +20,16 @@ const getByIdBooks = async (req, res) => {
 const addBook = async (req, res) => {
   const data = req.body;
 
-  const result = await books.addBook(data);
+  const result = await Book.create(data);
 
   return res.status(201).json(result);
 };
 
 const updateBookId = async (req, res) => {
-  const { booksId } = req.params;
+  const { id } = req.params;
   const data = req.body;
 
-  const result = await books.updateById(booksId, data);
+  const result = await Book.findByIdAndUpdate(id, data, { new: true });
   if (!result) {
     throw HttpError(404, "Not found");
   }
@@ -38,9 +38,9 @@ const updateBookId = async (req, res) => {
 };
 
 const deleteBookId = async (req, res) => {
-  const { booksId } = req.params;
+  const { id } = req.params;
 
-  const result = await books.deleteById(booksId);
+  const result = await Book.findByIdAndRemove(id);
   if (!result) {
     throw HttpError(404, "Not found");
   }
