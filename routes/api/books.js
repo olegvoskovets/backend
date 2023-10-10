@@ -6,9 +6,11 @@ const { validateBody, isValidId } = require("../../middlewares");
 
 const schemasBooks = require("../../schemas/books");
 
+const { authenticate } = require("../../middlewares");
+
 const router = express.Router();
 
-router.get("/", strl.getAll);
+router.get("/", authenticate, strl.getAll);
 
 router.get("/:id", isValidId, strl.getByIdBooks);
 
